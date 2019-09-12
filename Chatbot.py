@@ -45,11 +45,15 @@ def handle(msg):
 
     response = urlopen(url).read().decode('utf-8')
     responseJson = json.loads(response)
-
+    completed_message = ""
+    for i in responseJson["response"]["body"]["items"]["item"]:
+        #print(i["category"], i["fcstValue"])
+        completed_message += str(i["category"]) + " " + str(i["fcstValue"]) + "\n"
+    print(json.dumps(responseJson, indent=4))
  
     if content_type == 'text':
         if msg['text'] == '날씨':
-            bot.sendMessage(chat_id, responseJson)
+            bot.sendMessage(chat_id, completed_message)
         elif msg['text'] == '/start':
             pass
         elif msg['text'] == '/end':
