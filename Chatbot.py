@@ -101,7 +101,7 @@ def handle(msg):
             completed_message += "풍향은 "+ windDirArray[int(windDir)] + "풍 입니다. \n"
         elif(str(i["category"]) == "WSD"):
         	completed_message += "풍속은 " + str(i["fcstValue"]) + "m/s입니다.\n"
-        '''    
+        '''
         elif(str(i["category"]) == "UUU"):
             print(i["fcstValue"])
             if(i["fcstValue"] < 0):
@@ -118,31 +118,24 @@ def handle(msg):
                 windSpd = VVV + UUU
                 completed_message += "풍속은 " + str(round(windSpd, 1)) + "m/s입니다.\n"
         '''
-            
-        	
+
+
     print(json.dumps(responseJson, indent=4))
- 
+
     if content_type == 'text':
         if msg['text'] == '날씨':
             bot.sendMessage(chat_id, completed_message)
-        elif msg['text'] == '/start':
-            pass
-        elif msg['text'] == '/end':
-            sys.exit(1)
-        elif msg['text'] == '끝내자':
-            bot.sendMessage(chat_id, '또 봅시다 휴먼')
         else:
             bot.sendMessage(chat_id, '무슨 말인지 모르겠군요')
- 
- 
+
+
 TOKEN = Private.TOKEN    # 텔레그램으로부터 받은 Bot API 토큰
 #안드로이드 외부 편집 테스트
- 
+
 bot = telepot.Bot(TOKEN)
 MessageLoop(bot, handle).run_as_thread()
 print ('Listening ...')
- 
+
 # Keep the program running.
 while True:
     input()
-
