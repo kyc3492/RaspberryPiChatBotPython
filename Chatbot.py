@@ -22,6 +22,8 @@ def handle(msg):
     fcstTime = 0
 
     now_time = now.strftime('%H')
+    print(now_time)
+
     int_baseTime = int(now_time) - 2
     if(int_baseTime > 0):
         if(int_baseTime % 3 == 1):
@@ -38,7 +40,7 @@ def handle(msg):
     else:
         base_time = str(int_baseTime) + '00'
 
-    if(int(now_time) > 23 or int(now_time) < 2):
+    if(int(now_time) > 23 or int(now_time) < 3):
         yesterday_date = now - datetime.timedelta(1)
         now_date = yesterday_date.strftime('%Y%m%d')
 
