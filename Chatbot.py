@@ -20,6 +20,7 @@ def handle(msg):
     UUU = 0.0
     windSpd = 0
     fcstTime = 0
+    fcstTimeCounter = 0
 
     now_time = now.strftime('%H')
     print(now_time)
@@ -61,6 +62,9 @@ def handle(msg):
     for i in responseJson["response"]["body"]["items"]["item"]:
         #completed_message += str(i["category"]) + " " + str(i["fcstValue"]) + "\n"
         if(str(i["category"]) == "POP"):
+            fcstTimeCounter += 1
+            if(fcstTimeCounter > 1):
+                continue
             completed_message += str(i["fcstTime"])[0:2] + "시에 예보된 강수확률은 " + str(i["fcstValue"]) + "%입니다. \n"
         elif(str(i["category"]) == "PTY" and i["fcstValue"] != 0):
             if(str(i["fcstValue"]) == 1):
